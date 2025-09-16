@@ -1,9 +1,12 @@
 package com.example.libraryManagementSystem.services.impls;
 
+import com.example.libraryManagementSystem.dtos.UserDTO;
 import com.example.libraryManagementSystem.entities.User;
+import com.example.libraryManagementSystem.mappers.UserMapper;
 import com.example.libraryManagementSystem.repositories.UserRepository;
 import com.example.libraryManagementSystem.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +16,12 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Override
     public List<User> getAllUsers() {
@@ -25,30 +34,52 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
+    public User createUser(UserDTO userDTO) {
+        User user = userMapper.userDTOToUser(userDTO);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
-    /*@Override
-    public User updateUser(User updatedUser) {
-        return userRepository.findById(updatedUser.getId())
+    @Override
+    public User updateUser(Long id, UserDTO updatedUser) {
+        return userRepository.findById(id)
                 .map(user -> {
-                    user.setUserName(updatedUser.getUserName());
-                    user.setEmail(updatedUser.getEmail());
-                    user.setFirstName(updatedUser.getFirstName());
-                    user.setLastName(updatedUser.getLastName());
-                    user.setPhone(updatedUser.getPhone());
-                    user.setRole(updatedUser.getRole());
-                    user.setIsActive(updatedUser.getIsActive());
+                    if (updatedUser.userName() != null) {
+                        user.setUserName(updatedUser.userName());
+                    }
+                    if (updatedUser.firstName() != null) {
+                        user.setFirstName(updatedUser.firstName());
+                    }
+                    if (updatedUser.lastName() != null) {
+                        user.setLastName(updatedUser.lastName());
+                    }
+                    if (updatedUser.email() != null) {
+                        user.setEmail(updatedUser.email());
+                    }
+                    if (updatedUser.password() != null) {
+                        user.setPassword(passwordEncoder.encode(updatedUser.password()));
+                    }
+                    if (updatedUser.phone() != null) {
+                        user.setPhone(updatedUser.phone());
+                    }
+                    if (updatedUser.role() != null) {
+                        user.setRole(updatedUser.role());
+                    }
+                    if (updatedUser.isActive() != null) {
+                        user.setIsActive(updatedUser.isActive());
+                    }
+                    System.out.println(user + "\n" + updatedUser);
                     return userRepository.save(user);
                 })
-                .orElseThrow(() -> new RuntimeException("User not found with id " + updatedUser.getId()));
-        return userRepository.save(user);
-    } */
+                .orElseThrow(() -> new RuntimeException("User not found with id " + id));
+    }
 
     @Override
-    public void deleteUser(Long id) {
-
+    public User deleteUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id " + id));
+        userRepository.deleteById(id);
+        return user;
     }
 
     @Override

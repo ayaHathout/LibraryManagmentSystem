@@ -1,17 +1,14 @@
 package com.example.libraryManagementSystem.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.libraryManagementSystem.enums.Role;
 
-import java.io.Serializable;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class UserDTO implements Serializable {
-    String username;
-    String password;
-}
+public record UserDTO(
+        String userName,
+        String email,
+        String password,
+        String phone,
+        String firstName,
+        String lastName,
+        Boolean isActive,
+        Role role
+) {}
