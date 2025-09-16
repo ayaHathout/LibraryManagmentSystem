@@ -1,0 +1,70 @@
+package com.example.libraryManagementSystem.entities;
+
+import com.example.libraryManagementSystem.enums.Language;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.List;
+
+@Entity
+@Table(name = "books")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Book implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column(unique = true)
+    private String isbn;
+
+    private String edition;
+
+    @Column(name = "publication_year")
+    private Integer publicationYear;
+
+    @Enumerated(EnumType.STRING)
+    private Language language = Language.ARABIC;
+
+    @Column(length = 500)
+    private String summary;
+
+    @Column(name = "cover_image", length = 2048)
+    private String coverImage;
+
+    @Column(name = "total_copies", nullable = false)
+    private Long totalCopies;
+
+    @Column(name = "available_copies", nullable = false)
+    private Long availableCopies;
+
+    // ------------------------------------------------------
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
+
+    @ManyToMany
+    @JoinTable(
+            name = "books_authors",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private List<Author> authors;
+
+    @ManyToMany
+    @JoinTable(
+            name = "books_categories",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categories;
+}
