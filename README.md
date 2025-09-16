@@ -1,1 +1,1 @@
-![Uploading libraryDBSchema.PNG…]()
+![Uploading libraryDBSchema.PNG…](libraryDBSchema.PNG)
