@@ -11,4 +11,7 @@ public interface BorrowRecordService {
     BorrowRecordDTO createBorrowRecord(BorrowRecordDTO borrowRecordDTO);
     Optional<BorrowRecordDTO> updateBorrowRecord(Long id, BorrowRecordDTO borrowRecordDTO);
     Optional<BorrowRecordDTO> deleteBorrowRecord(Long id);
+
+    // To handle the book return case
+    BorrowRecordDTO returnBook(Long borrowRecordId);
 }

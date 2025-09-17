@@ -4,14 +4,18 @@ import com.example.libraryManagementSystem.dtos.BorrowRecordDTO;
 import com.example.libraryManagementSystem.entities.Book;
 import com.example.libraryManagementSystem.entities.BorrowRecord;
 import com.example.libraryManagementSystem.entities.Borrower;
+import com.example.libraryManagementSystem.enums.Status;
 import com.example.libraryManagementSystem.mappers.BorrowRecordMapper;
 import com.example.libraryManagementSystem.repositories.BookRepository;
 import com.example.libraryManagementSystem.repositories.BorrowRecordRepository;
 import com.example.libraryManagementSystem.repositories.BorrowerRepository;
 import com.example.libraryManagementSystem.services.interfaces.BorrowRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,6 +78,12 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
                         borrowRecord.setBorrowDate(updateBorrowRecordDTO.borrowDate());
                     }
                     if (updateBorrowRecordDTO.dueDate() != null) {
+                        if (updateBorrowRecordDTO.status() == Status.OVERDUE) {
+                            if (ChronoUnit.DAYS.between(updateBorrowRecordDTO.dueDate(), LocalDate.now()) >= 0) {
+                                borrowRecord.setStatus(Status.BORROWED);
+                                borrowRecord.setFine(0.0);
+                            }
+                        }
                         borrowRecord.setDueDate(updateBorrowRecordDTO.dueDate());
                     }
                     if (updateBorrowRecordDTO.returnDate() != null) {
@@ -115,4 +125,41 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
         }
         return borrowRecord.map(borrowRecordMapper::toDTO);
     }
+
+    // To track the status and DueDate
+    @Scheduled(cron = "0 0 0 * * ?") // Everyday at 12 AM
+    public void updateOverdueRecords() {
+        List<BorrowRecord> records = borrowRecordRepository.findAll();
+        for (BorrowRecord record : records) {
+            if (record.getStatus() == Status.BORROWED && LocalDate.now().isAfter(record.getDueDate())) {
+                record.setStatus(Status.OVERDUE);
+                Long overdueDays = ChronoUnit.DAYS.between(record.getDueDate(), LocalDate.now());
+                record.setFine(overdueDays * 10.0);  // Everyday late = 10.0
+
+                borrowRecordRepository.save(record);
+            }
+        }
+    }
+
+    // To handle the book return case
+    @Override
+    public BorrowRecordDTO returnBook(Long borrowRecordId) {
+        BorrowRecord record = borrowRecordRepository.findById(borrowRecordId)
+                .orElseThrow(() -> new RuntimeException("BorrowRecord not found with id: " + borrowRecordId));
+
+        record.setReturnDate(LocalDate.now());
+        record.setStatus(Status.RETURNED);
+
+        Book book = bookRepository.findById(record.getBook().getId()).get();
+        book.setAvailableCopies(book.getAvailableCopies() + 1);
+        bookRepository.save(book);
+
+        if (record.getReturnDate().isAfter(record.getDueDate())) {
+            Long overdueDays = ChronoUnit.DAYS.between(record.getDueDate(), record.getReturnDate());
+            record.setFine(overdueDays * 10.0);
+        }
+
+        return borrowRecordMapper.toDTO(borrowRecordRepository.save(record));
+    }
+
 }

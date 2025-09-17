@@ -66,4 +66,14 @@ public class BorrowerRecordController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("BorrowRecord Not Found With id " + id);
     }
+
+    @GetMapping("return/{id}")
+    public ResponseEntity<?> returnBook(@PathVariable Long id) {
+        try {
+            BorrowRecordDTO borrowRecordDTO = borrowRecordService.returnBook(id);
+            return ResponseEntity.ok(borrowRecordDTO);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
+        }
+    }
 }
