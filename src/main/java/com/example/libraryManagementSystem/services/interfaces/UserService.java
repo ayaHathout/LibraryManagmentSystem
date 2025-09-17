@@ -10,7 +10,7 @@ public interface UserService {
     List<User> getAllUsers();
     Optional<User> getUserById(Long id);
     User createUser(UserDTO user);
-    User updateUser(Long id, UserDTO user);
-    User deleteUser(Long id);
+    Optional<User> updateUser(Long id, UserDTO user);
+    Optional<User> deleteUser(Long id);
     Optional<User> getByUserName(String username);
 }

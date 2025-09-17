@@ -39,14 +39,22 @@ public class UserController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUser) {
-        return userService.updateUser(id, updatedUser);
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUser) {
+        Optional<User> user = userService.updateUser(id, updatedUser);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User Not Found With id " + id);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public User deleteUser(@PathVariable Long id) {
-        return userService.deleteUser(id);
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        Optional<User> user = userService.deleteUser(id);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User Not Found With id " + id);
     }
 
     @GetMapping

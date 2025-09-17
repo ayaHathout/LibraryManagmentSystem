@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long id, UserDTO updatedUser) {
+    public Optional<User> updateUser(Long id, UserDTO updatedUser) {
         return userRepository.findById(id)
                 .map(user -> {
                     if (updatedUser.userName() != null) {
@@ -70,15 +70,15 @@ public class UserServiceImpl implements UserService {
                     }
                     System.out.println(user + "\n" + updatedUser);
                     return userRepository.save(user);
-                })
-                .orElseThrow(() -> new RuntimeException("User not found with id " + id));
+                });
     }
 
     @Override
-    public User deleteUser(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id " + id));
-        userRepository.deleteById(id);
+    public Optional<User> deleteUser(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            userRepository.deleteById(id);
+        }
         return user;
     }
 
