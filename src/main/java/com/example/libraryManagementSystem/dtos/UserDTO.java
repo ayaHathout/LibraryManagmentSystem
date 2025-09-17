@@ -11,4 +11,10 @@ public record UserDTO(
         String lastName,
         Boolean isActive,
         Role role
-) {}
+) {
+    public UserDTO {
+        if (isActive == null) {
+            isActive = true;
+        }
+    }
+}
