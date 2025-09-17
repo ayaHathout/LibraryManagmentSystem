@@ -51,6 +51,11 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
         Book book = bookRepository.findById(borrowRecordDTO.bookId())
                 .orElseThrow(() -> new RuntimeException("Book not found with id: " + borrowRecordDTO.bookId()));
 
+        if (book.getAvailableCopies() == 0) {
+            throw new RuntimeException("No available copies for book: " + book.getTitle());
+        }
+        book.setAvailableCopies(book.getAvailableCopies() - 1);
+
         // Get the borrower
         Borrower borrower = borrowerRepository.findById(borrowRecordDTO.borrowerId())
                 .orElseThrow(() -> new RuntimeException("Borrower not found with id: " + borrowRecordDTO.borrowerId()));
@@ -85,8 +90,17 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
                                 .ifPresent(borrowRecord::setBorrower);
                     }
                     if (updateBorrowRecordDTO.bookId() != null) {
-                        bookRepository.findById(updateBorrowRecordDTO.bookId())
-                                .ifPresent(borrowRecord::setBook);
+                        Optional<Book> book = bookRepository.findById(updateBorrowRecordDTO.bookId());
+                        if (book.isPresent()) {
+                            if (book.get().getAvailableCopies() == 0) {
+                                throw new RuntimeException("No available copies for book: " + book.get().getTitle());
+                            }
+                            book.get().setAvailableCopies(book.get().getAvailableCopies() - 1);
+                            borrowRecord.setBook(book.get());
+                        }
+                        else {
+                            throw new RuntimeException("Book not found with id: " + updateBorrowRecordDTO.bookId());
+                        }
                     }
                     return borrowRecordRepository.save(borrowRecord);
                 })

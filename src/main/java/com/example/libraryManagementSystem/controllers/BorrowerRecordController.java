@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -19,18 +20,27 @@ public class BorrowerRecordController {
 
     @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     @PostMapping
-    public BorrowRecordDTO createBorrowRecord(@RequestBody BorrowRecordDTO borrowRecordDTO) {
-        return borrowRecordService.createBorrowRecord(borrowRecordDTO);
+    public ResponseEntity<?> createBorrowRecord(@RequestBody BorrowRecordDTO borrowRecordDTO) {
+        try {
+            BorrowRecordDTO retBorrowRecord = borrowRecordService.createBorrowRecord(borrowRecordDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(retBorrowRecord);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
+        }
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     @PatchMapping("/{id}")
     public ResponseEntity<?> updateBorrowRecord(@PathVariable Long id, @RequestBody BorrowRecordDTO updatedBorrowRecord) {
-        Optional<BorrowRecordDTO> borrowRecord = borrowRecordService.updateBorrowRecord(id, updatedBorrowRecord);
-        if (borrowRecord.isPresent()) {
-            return ResponseEntity.ok(borrowRecord.get());
+        try {
+            Optional<BorrowRecordDTO> borrowRecord = borrowRecordService.updateBorrowRecord(id, updatedBorrowRecord);
+            if (borrowRecord.isPresent()) {
+                return ResponseEntity.ok(borrowRecord.get());
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("BorrowRecord Not Found With id " + id);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("BorrowRecord Not Found With id " + id);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
