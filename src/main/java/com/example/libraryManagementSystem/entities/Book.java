@@ -41,8 +41,8 @@ public class Book implements Serializable {
     @Column(name = "cover_image", length = 2048)
     private String coverImage;
 
-    @Column(name = "total_copies", nullable = false)
-    private Long totalCopies;
+    @Column(name = "total_copies")
+    private Long totalCopies = 1L;
 
     @Column(name = "available_copies", nullable = false)
     private Long availableCopies;

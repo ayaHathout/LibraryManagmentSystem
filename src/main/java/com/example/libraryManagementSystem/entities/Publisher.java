@@ -32,6 +32,6 @@ public class Publisher implements Serializable {
     private String address;
 
     // -------------------------------------------------------------
-    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "publisher")
     private List<Book> books;
 }

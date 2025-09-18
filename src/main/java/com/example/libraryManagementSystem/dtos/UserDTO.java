@@ -13,8 +13,7 @@ public record UserDTO(
         Role role
 ) {
     public UserDTO {
-        if (isActive == null) {
-            isActive = true;
-        }
+        if (isActive == null)  isActive = true;
+        if (role == null)  role = Role.STAFF;
     }
 }
