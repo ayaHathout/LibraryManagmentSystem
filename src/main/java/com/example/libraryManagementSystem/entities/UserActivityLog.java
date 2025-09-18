@@ -3,10 +3,7 @@ package com.example.libraryManagementSystem.entities;
 import com.example.libraryManagementSystem.enums.Action;
 import com.example.libraryManagementSystem.enums.EntityType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -17,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(exclude = "user")
 public class UserActivityLog implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +26,6 @@ public class UserActivityLog implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private EntityType entity;
-
-    @Column(name = "entity_id")
-    private Long entityId;
 
     @Column(length = 500)
     private String details;

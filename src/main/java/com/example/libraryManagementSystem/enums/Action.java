@@ -1,5 +1,5 @@
 package com.example.libraryManagementSystem.enums;
 
 public enum Action {
-    LOGIN, LOGOUT, CREATE, UPDATE, DELETE, BORROW, RETURN
+    LOGIN, CREATE, UPDATE, DELETE, BORROW, RETURN, GET
 }
