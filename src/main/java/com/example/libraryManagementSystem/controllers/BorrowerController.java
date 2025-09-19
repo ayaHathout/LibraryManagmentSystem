@@ -1,8 +1,7 @@
 package com.example.libraryManagementSystem.controllers;
 
-import com.example.libraryManagementSystem.dtos.BorrowerCreateDTO;
-import com.example.libraryManagementSystem.dtos.BorrowerUpdateDTO;
-import com.example.libraryManagementSystem.entities.Borrower;
+import com.example.libraryManagementSystem.dtos.BorrowerDTO;
+import com.example.libraryManagementSystem.dtos.BorrowerResponseDTO;
 import com.example.libraryManagementSystem.services.interfaces.BorrowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,14 +20,14 @@ public class BorrowerController {
 
     @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     @PostMapping
-    public Borrower createBorrower(@RequestBody BorrowerCreateDTO borrowerCreateDTO) {
-        return borrowerService.createBorrower(borrowerCreateDTO);
+    public BorrowerResponseDTO createBorrower(@RequestBody BorrowerDTO borrowerDTO) {
+        return borrowerService.createBorrower(borrowerDTO);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateBorrower(@PathVariable Long id, @RequestBody BorrowerUpdateDTO borrowerUpdateDTO) {
-        Optional<Borrower> borrower = borrowerService.updateBorrower(id, borrowerUpdateDTO);
+    public ResponseEntity<?> updateBorrower(@PathVariable Long id, @RequestBody BorrowerDTO borrowerDTO) {
+        Optional<BorrowerResponseDTO> borrower = borrowerService.updateBorrower(id, borrowerDTO);
         if (borrower.isPresent()) {
             return ResponseEntity.ok(borrower.get());
         }
@@ -38,7 +37,7 @@ public class BorrowerController {
     @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBorrower(@PathVariable Long id) {
-        Optional<Borrower> borrower = borrowerService.deleteBorrower(id);
+        Optional<BorrowerResponseDTO> borrower = borrowerService.deleteBorrower(id);
         if (borrower.isPresent()) {
             return ResponseEntity.ok(borrower.get());
         }
@@ -46,13 +45,13 @@ public class BorrowerController {
     }
 
     @GetMapping
-    public List<Borrower> getAllBorrowers() {
+    public List<BorrowerResponseDTO> getAllBorrowers() {
         return borrowerService.getAllBorrowers();
     }
 
     @GetMapping("{id}")
     public ResponseEntity<?> getBorrower(@PathVariable Long id) {
-        Optional<Borrower> borrower = borrowerService.getBorrowerById(id);
+        Optional<BorrowerResponseDTO> borrower = borrowerService.getBorrowerById(id);
         if (borrower.isPresent()) {
             return ResponseEntity.ok(borrower.get());
         }

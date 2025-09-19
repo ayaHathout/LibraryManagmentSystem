@@ -2,9 +2,11 @@ package com.example.libraryManagementSystem.services.impls;
 
 import com.example.libraryManagementSystem.dtos.UserActivityLogDTO;
 import com.example.libraryManagementSystem.dtos.UserActivityLogResponseDTO;
+import com.example.libraryManagementSystem.dtos.UserResponseDTO;
 import com.example.libraryManagementSystem.entities.User;
 import com.example.libraryManagementSystem.entities.UserActivityLog;
 import com.example.libraryManagementSystem.mappers.UserActivityLogMapper;
+import com.example.libraryManagementSystem.mappers.UserMapper;
 import com.example.libraryManagementSystem.repositories.UserActivityLogRepository;
 import com.example.libraryManagementSystem.services.interfaces.UserActivityLogService;
 import com.example.libraryManagementSystem.services.interfaces.UserService;
@@ -27,6 +29,9 @@ public class UserActivityLogServiceImpl implements UserActivityLogService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public List<UserActivityLogResponseDTO> getAllUserActivityLogs() {
         return userActivityLogRepository.findAll()
@@ -43,8 +48,10 @@ public class UserActivityLogServiceImpl implements UserActivityLogService {
 
     @Override
     public UserActivityLogResponseDTO createUserActivityLog(UserActivityLogDTO userActivityLogDTO) {
-        User user = userService.getUserById(userActivityLogDTO.userId())
+        UserResponseDTO userResponseDTO = userService.getUserById(userActivityLogDTO.userId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userActivityLogDTO.userId()));
+
+        User user = userMapper.toEntity(userResponseDTO);
 
         UserActivityLog userActivityLog = userActivityLogMapper.toEntity(userActivityLogDTO);
 

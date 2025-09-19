@@ -2,7 +2,8 @@ package com.example.libraryManagementSystem.dtos;
 
 import com.example.libraryManagementSystem.enums.Role;
 
-public record UserDTO(
+public record UserResponseDTO(
+        Long id,
         String userName,
         String email,
         String password,
@@ -10,8 +11,4 @@ public record UserDTO(
         String firstName,
         String lastName,
         Role role
-) {
-    public UserDTO {
-        if (role == null)  role = Role.STAFF;
-    }
-}
+) {}

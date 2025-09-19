@@ -1,6 +1,8 @@
 package com.example.libraryManagementSystem.aspects;
 
 import com.example.libraryManagementSystem.dtos.UserActivityLogDTO;
+import com.example.libraryManagementSystem.dtos.UserDTO;
+import com.example.libraryManagementSystem.dtos.UserResponseDTO;
 import com.example.libraryManagementSystem.entities.User;
 import com.example.libraryManagementSystem.enums.Action;
 import com.example.libraryManagementSystem.enums.EntityType;
@@ -48,7 +50,7 @@ public class UserActivityLogAspect {
     public void logAfterEndpointExecution(JoinPoint joinPoint, Object result) {
         String methodName = joinPoint.getSignature().getName();
         String className = joinPoint.getTarget().getClass().getSimpleName();
-        User currentUser = getCurrentUser();
+        UserResponseDTO currentUser = getCurrentUser();
         String details = String.format("Method: %s, Class: %s", methodName, className);
 
         System.out.println("Method: " + methodName);
@@ -61,12 +63,12 @@ public class UserActivityLogAspect {
                 determineAction(methodName),
                 determineEntity(className),
                 details,
-                currentUser.getId()
+                currentUser.id()
         );
         userActivityLogService.createUserActivityLog(logDTO);
     }
 
-    private User getCurrentUser() {
+    private UserResponseDTO getCurrentUser() {
         String username = getCurrentUsername();
         return userService.getByUserName(username).orElse(null);
     }

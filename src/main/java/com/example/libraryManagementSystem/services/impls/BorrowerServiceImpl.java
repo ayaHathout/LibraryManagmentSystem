@@ -1,7 +1,7 @@
 package com.example.libraryManagementSystem.services.impls;
 
-import com.example.libraryManagementSystem.dtos.BorrowerCreateDTO;
-import com.example.libraryManagementSystem.dtos.BorrowerUpdateDTO;
+import com.example.libraryManagementSystem.dtos.BorrowerDTO;
+import com.example.libraryManagementSystem.dtos.BorrowerResponseDTO;
 import com.example.libraryManagementSystem.entities.Borrower;
 import com.example.libraryManagementSystem.mappers.BorrowerMapper;
 import com.example.libraryManagementSystem.repositories.BorrowerRepository;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BorrowerServiceImpl implements BorrowerService {
@@ -21,50 +22,47 @@ public class BorrowerServiceImpl implements BorrowerService {
     private BorrowerMapper borrowerMapper;
 
     @Override
-    public List<Borrower> getAllBorrowers() {
-        return borrowerRepository.findAll();
+    public List<BorrowerResponseDTO> getAllBorrowers() {
+        return borrowerRepository.findAll().stream().map(borrowerMapper::toResponseDTO).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<Borrower> getBorrowerById(Long id) {
-        return borrowerRepository.findById(id);
+    public Optional<BorrowerResponseDTO> getBorrowerById(Long id) {
+        return borrowerRepository.findById(id).map(borrowerMapper::toResponseDTO);
     }
 
     @Override
-    public Borrower createBorrower(BorrowerCreateDTO borrowerCreateDTO) {
-        Borrower borrower = borrowerMapper.toEntity(borrowerCreateDTO);
-        return borrowerRepository.save(borrower);
+    public BorrowerResponseDTO createBorrower(BorrowerDTO borrowerDTO) {
+        Borrower borrower = borrowerMapper.toEntity(borrowerDTO);
+        return borrowerMapper.toResponseDTO(borrowerRepository.save(borrower));
     }
 
     @Override
-    public Optional<Borrower> updateBorrower(Long id, BorrowerUpdateDTO borrowerUpdateDTO) {
+    public Optional<BorrowerResponseDTO> updateBorrower(Long id, BorrowerDTO borrowerDTO) {
         return borrowerRepository.findById(id)
                 .map(borrower -> {
-                    if (borrowerUpdateDTO.email() != null) {
-                        borrower.setEmail(borrowerUpdateDTO.email());
+                    if (borrowerDTO.email() != null) {
+                        borrower.setEmail(borrowerDTO.email());
                     }
-                    if (borrowerUpdateDTO.firstName() != null) {
-                        borrower.setFirstName(borrowerUpdateDTO.firstName());
+                    if (borrowerDTO.firstName() != null) {
+                        borrower.setFirstName(borrowerDTO.firstName());
                     }
-                    if (borrowerUpdateDTO.lastName() != null) {
-                        borrower.setLastName(borrowerUpdateDTO.lastName());
+                    if (borrowerDTO.lastName() != null) {
+                        borrower.setLastName(borrowerDTO.lastName());
                     }
-                    if (borrowerUpdateDTO.phone() != null) {
-                        borrower.setPhone(borrowerUpdateDTO.phone());
+                    if (borrowerDTO.phone() != null) {
+                        borrower.setPhone(borrowerDTO.phone());
                     }
-                    if (borrowerUpdateDTO.address() != null) {
-                        borrower.setAddress(borrowerUpdateDTO.address());
-                    }
-                    if (borrowerUpdateDTO.isActive() != null) {
-                        borrower.setIsActive(borrowerUpdateDTO.isActive());
+                    if (borrowerDTO.address() != null) {
+                        borrower.setAddress(borrowerDTO.address());
                     }
                     return borrowerRepository.save(borrower);
-                });
+                }).map(borrowerMapper::toResponseDTO);
     }
 
     @Override
-    public Optional<Borrower> deleteBorrower(Long id) {
-        Optional<Borrower> borrower = borrowerRepository.findById(id);
+    public Optional<BorrowerResponseDTO> deleteBorrower(Long id) {
+        Optional<BorrowerResponseDTO> borrower = borrowerRepository.findById(id).map(borrowerMapper::toResponseDTO);
         if (borrower.isPresent()) {
             borrowerRepository.deleteById(id);
         }

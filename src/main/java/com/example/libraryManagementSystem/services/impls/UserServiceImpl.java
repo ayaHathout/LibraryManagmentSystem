@@ -1,6 +1,7 @@
 package com.example.libraryManagementSystem.services.impls;
 
 import com.example.libraryManagementSystem.dtos.UserDTO;
+import com.example.libraryManagementSystem.dtos.UserResponseDTO;
 import com.example.libraryManagementSystem.entities.User;
 import com.example.libraryManagementSystem.mappers.UserMapper;
 import com.example.libraryManagementSystem.repositories.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,24 +26,24 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponseDTO> getAllUsers() {
+        return userRepository.findAll().stream().map(userMapper::toResponseDTO).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+    public Optional<UserResponseDTO> getUserById(Long id) {
+        return userRepository.findById(id).map(userMapper::toResponseDTO);
     }
 
     @Override
-    public User createUser(UserDTO userDTO) {
+    public UserResponseDTO createUser(UserDTO userDTO) {
         User user = userMapper.toEntity(userDTO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        return userMapper.toResponseDTO(userRepository.save(user));
     }
 
     @Override
-    public Optional<User> updateUser(Long id, UserDTO updatedUser) {
+    public Optional<UserResponseDTO> updateUser(Long id, UserDTO updatedUser) {
         return userRepository.findById(id)
                 .map(user -> {
                     if (updatedUser.userName() != null) {
@@ -65,17 +67,14 @@ public class UserServiceImpl implements UserService {
                     if (updatedUser.role() != null) {
                         user.setRole(updatedUser.role());
                     }
-                    if (updatedUser.isActive() != null) {
-                        user.setIsActive(updatedUser.isActive());
-                    }
                     System.out.println(user + "\n" + updatedUser);
                     return userRepository.save(user);
-                });
+                }).map(userMapper::toResponseDTO);
     }
 
     @Override
-    public Optional<User> deleteUser(Long id) {
-        Optional<User> user = userRepository.findById(id);
+    public Optional<UserResponseDTO> deleteUser(Long id) {
+        Optional<UserResponseDTO> user = userRepository.findById(id).map(userMapper::toResponseDTO);
         if (user.isPresent()) {
             userRepository.deleteById(id);
         }
@@ -83,7 +82,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getByUserName(String username) {
-        return userRepository.findByUserName(username);
+    public Optional<UserResponseDTO> getByUserName(String username) {
+        return userRepository.findByUserName(username).map(userMapper::toResponseDTO);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.libraryManagementSystem.mappers;
 
 import com.example.libraryManagementSystem.dtos.UserDTO;
+import com.example.libraryManagementSystem.dtos.UserResponseDTO;
 import com.example.libraryManagementSystem.entities.User;
 import org.mapstruct.Mapper;
 
@@ -9,4 +10,8 @@ public interface UserMapper {
     UserDTO toDTO(User user);
 
     User toEntity(UserDTO userDTO);
+
+    UserResponseDTO toResponseDTO(User user);
+
+    User toEntity(UserResponseDTO userResponseDTO);
 }
