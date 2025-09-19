@@ -1,0 +1,78 @@
+package com.example.libraryManagementSystem.services.impls;
+
+import com.example.libraryManagementSystem.dtos.CategoryDTO;
+import com.example.libraryManagementSystem.dtos.CategoryResponseDTO;
+import com.example.libraryManagementSystem.entities.Book;
+import com.example.libraryManagementSystem.entities.Category;
+import com.example.libraryManagementSystem.mappers.CategoryMapper;
+import com.example.libraryManagementSystem.repositories.CategoryRepository;
+import com.example.libraryManagementSystem.services.interfaces.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class CategoryServiceImpl implements CategoryService {
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
+    private CategoryMapper categoryMapper;
+
+    @Override
+    public List<CategoryResponseDTO> getAllCategorys() {
+        return categoryRepository.findAllWithSubCategories()
+                .stream()
+                .map(categoryMapper::toResponseDTO)
+                .toList();
+    }
+
+    @Override
+    public Optional<CategoryResponseDTO> getCategoryById(Long id) {
+        return categoryRepository.findById(id)
+                .map(categoryMapper::toResponseDTO);
+    }
+
+    @Override
+    public CategoryResponseDTO createCategory(CategoryDTO categoryDTO) {
+        Category category = categoryMapper.toEntity(categoryDTO);
+
+        if (categoryDTO.parentId() != null) {
+            Category parent = categoryRepository.findById(categoryDTO.parentId())
+                    .orElseThrow(() -> new RuntimeException("Parent category not found with id: " + categoryDTO.parentId()));
+            category.setParent(parent);
+        }
+
+        return categoryMapper.toResponseDTO(categoryRepository.save(category));
+    }
+
+    @Override
+    public Optional<CategoryResponseDTO> updateCategory(Long id, CategoryDTO updateCategoryDTO) {
+        return categoryRepository.findById(id)
+                .map(category -> {
+                    if (updateCategoryDTO.name() != null) {
+                        category.setName(updateCategoryDTO.name());
+                    }
+                    if (updateCategoryDTO.parentId() != null) {
+                        Category parent = categoryRepository.findById(updateCategoryDTO.parentId())
+                                .orElseThrow(() -> new RuntimeException("Parent category not found with id: " + updateCategoryDTO.parentId()));
+                        category.setParent(parent);
+                    }
+
+                    return categoryRepository.save(category);
+                })
+                .map(categoryMapper::toResponseDTO);
+    }
+
+    @Override
+    public Optional<CategoryResponseDTO> deleteCategory(Long id) {
+        return categoryRepository.findById(id)
+                .map(category -> {
+                    CategoryResponseDTO dto = categoryMapper.toResponseDTO(category);
+                    categoryRepository.delete(category);
+                    return dto;
+                });
+    }
+}

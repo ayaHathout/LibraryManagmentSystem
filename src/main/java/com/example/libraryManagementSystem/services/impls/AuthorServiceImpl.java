@@ -2,12 +2,7 @@ package com.example.libraryManagementSystem.services.impls;
 
 import com.example.libraryManagementSystem.dtos.AuthorDTO;
 import com.example.libraryManagementSystem.dtos.AuthorResponseDTO;
-import com.example.libraryManagementSystem.entities.Book;
-import com.example.libraryManagementSystem.entities.Author;
-import com.example.libraryManagementSystem.entities.Borrower;
-import com.example.libraryManagementSystem.enums.Status;
 import com.example.libraryManagementSystem.mappers.AuthorMapper;
-import com.example.libraryManagementSystem.repositories.BookRepository;
 import com.example.libraryManagementSystem.repositories.AuthorRepository;
 import com.example.libraryManagementSystem.services.interfaces.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
