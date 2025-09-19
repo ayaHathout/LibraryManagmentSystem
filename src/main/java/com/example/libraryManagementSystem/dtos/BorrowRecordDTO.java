@@ -15,6 +15,7 @@ public record BorrowRecordDTO(
 ) {
     public BorrowRecordDTO {
         if (borrowDate == null)  borrowDate = LocalDate.now();
+        if (dueDate == null)  dueDate = LocalDate.now().plusWeeks(1);
         if (status == null)  status = Status.BORROWED;
         if (fine == null)  fine = 0.0;
     }

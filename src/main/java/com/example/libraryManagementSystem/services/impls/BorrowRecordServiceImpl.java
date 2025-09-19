@@ -55,14 +55,14 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
         Book book = bookRepository.findById(borrowRecordDTO.bookId())
                 .orElseThrow(() -> new RuntimeException("Book not found with id: " + borrowRecordDTO.bookId()));
 
+        // Get the borrower
+        Borrower borrower = borrowerRepository.findById(borrowRecordDTO.borrowerId())
+                .orElseThrow(() -> new RuntimeException("Borrower not found with id: " + borrowRecordDTO.borrowerId()));
+
         if (book.getAvailableCopies() == 0) {
             throw new RuntimeException("No available copies for book: " + book.getTitle());
         }
         book.setAvailableCopies(book.getAvailableCopies() - 1);
-
-        // Get the borrower
-        Borrower borrower = borrowerRepository.findById(borrowRecordDTO.borrowerId())
-                .orElseThrow(() -> new RuntimeException("Borrower not found with id: " + borrowRecordDTO.borrowerId()));
 
         borrowRecord.setBook(book);
         borrowRecord.setBorrower(borrower);
@@ -150,7 +150,9 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
         record.setReturnDate(LocalDate.now());
         record.setStatus(Status.RETURNED);
 
-        Book book = bookRepository.findById(record.getBook().getId()).get();
+        Book book = bookRepository.findById(record.getBook().getId())
+                        .orElseThrow(() -> new RuntimeException("Book not found with id: " + record.getBook().getId()));
+
         book.setAvailableCopies(book.getAvailableCopies() + 1);
         bookRepository.save(book);
 
@@ -162,4 +164,30 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
         return borrowRecordMapper.toDTO(borrowRecordRepository.save(record));
     }
 
+    // To handle the book borrow case
+    @Override
+    public BorrowRecordDTO borrowBook(Long borrowId, Long bookId) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new RuntimeException("Book not found with id: " + bookId));
+
+        // Get the borrower
+        Borrower borrower = borrowerRepository.findById(borrowId)
+                .orElseThrow(() -> new RuntimeException("Borrower not found with id: " + borrowId));
+
+        if (book.getAvailableCopies() == 0) {
+            throw new RuntimeException("No available copies for book: " + book.getTitle());
+        }
+        book.setAvailableCopies(book.getAvailableCopies() - 1);
+
+        BorrowRecord borrowRecord = BorrowRecord.builder()
+                .borrower(borrower)
+                .book(book)
+                .borrowDate(LocalDate.now())
+                .dueDate(LocalDate.now().plusWeeks(1))
+                .status(Status.BORROWED)
+                .fine(0.0)
+                .build();
+
+        return borrowRecordMapper.toDTO(borrowRecordRepository.save(borrowRecord));
+    }
 }

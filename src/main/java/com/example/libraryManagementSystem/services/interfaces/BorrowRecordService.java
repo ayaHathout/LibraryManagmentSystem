@@ -14,4 +14,7 @@ public interface BorrowRecordService {
 
     // To handle the book return case
     BorrowRecordDTO returnBook(Long borrowRecordId);
+
+    // To handle the book borrow case
+    BorrowRecordDTO borrowBook(Long borrowId, Long bookId);
 }

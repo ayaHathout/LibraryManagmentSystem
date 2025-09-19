@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -28,11 +29,16 @@ public class BookController {
     @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/{id}")
     public ResponseEntity<?> updateBook(@PathVariable Long id, @RequestBody BookUpdateDTO bookUpdateDTO) {
-        Optional<Book> book = bookService.updateBook(id, bookUpdateDTO);
-        if (book.isPresent()) {
-            return ResponseEntity.ok(book.get());
+        try {
+            Optional<Book> book = bookService.updateBook(id, bookUpdateDTO);
+            if (book.isPresent()) {
+                return ResponseEntity.ok(book.get());
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Book Not Found With id " + id);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Book Not Found With id " + id);
+
     }
 
     @PreAuthorize("hasRole('ADMIN')")

@@ -96,6 +96,13 @@ public class BookServiceImpl implements BookService {
                         }
                     }
 
+                    if (updatedBookDTO.availableCopies() != null) {
+                        if (updatedBookDTO.availableCopies() > book.getTotalCopies()) {
+                            throw new RuntimeException("Available copies can't be greater than the total copies");
+                        }
+                        book.setAvailableCopies(updatedBookDTO.availableCopies());
+                    }
+
                     if (updatedBookDTO.publisherId() != null) {
                         Optional<Publisher> publisherOpt = publisherRepository.findById(updatedBookDTO.publisherId());
                         publisherOpt.ifPresent(book::setPublisher);

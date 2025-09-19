@@ -67,11 +67,23 @@ public class BorrowerRecordController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("BorrowRecord Not Found With id " + id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     @GetMapping("return/{id}")
     public ResponseEntity<?> returnBook(@PathVariable Long id) {
         try {
             BorrowRecordDTO borrowRecordDTO = borrowRecordService.returnBook(id);
             return ResponseEntity.ok(borrowRecordDTO);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
+        }
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN','LIBRARIAN')")
+    @PostMapping("/borrow")
+    public ResponseEntity<?> borrowBook(@RequestBody BorrowRecordDTO borrowRecordDTO) {
+        try {
+            BorrowRecordDTO created = borrowRecordService.borrowBook(borrowRecordDTO.borrowerId(), borrowRecordDTO.bookId());
+            return ResponseEntity.status(HttpStatus.CREATED).body(created);
         } catch (RuntimeException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
         }
