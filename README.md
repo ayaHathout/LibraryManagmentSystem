@@ -15,10 +15,10 @@ The Library Management System database is designed to efficiently manage books, 
   Stores information about book authors, including their names and short biography.  
 
 - **Categories**:  
-  Used to classify books. Keeps the design simple (no subcategories for now).  
+  Used to classify books. Supports parent-child relationships for hierarchical categorization (e.g., Fiction → Mystery).  
 
 - **Borrowers**:  
-  Represents library members who borrow books. Each borrower has personal details (name, email, phone, address) and an **is_active** status for membership management.  
+  Represents library members who borrow books. Each borrower has personal details (name, email, phone, address).  
 
 - **BorrowRecords**:  
   Tracks borrowing transactions. Each record links a **borrower** to a **book** with borrow date, due date, return date, status (e.g., borrowed, returned, overdue), and any applicable fines.  
@@ -27,7 +27,7 @@ The Library Management System database is designed to efficiently manage books, 
   Represents system users (e.g., Administrator, Librarian, Staff). Includes role-based access control with roles stored as an ENUM.  
 
 - **UserActivityLogs**:  
-  Tracks system user activities such as **login, borrow, and return**, ensuring accountability and auditing.  
+  Tracks system user activities such as **create, update, delete, get, login, borrow, and return**, ensuring accountability and auditing.  
 
 ---
 
