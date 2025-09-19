@@ -20,7 +20,7 @@ public interface PublisherMapper {
     @Mapping(target = "bookIds", source = "books")
     PublisherResponseDTO toResponseDTO(Publisher publisher);
 
-    // Helper to map books → bookIds
+    // Helper method to map books → bookIds
     default List<Long> mapBooksToIds(List<Book> books) {
         if (books == null)  return null;
         return books.stream()
