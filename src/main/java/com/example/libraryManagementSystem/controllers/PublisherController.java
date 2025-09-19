@@ -4,6 +4,7 @@ import com.example.libraryManagementSystem.dtos.PublisherDTO;
 import com.example.libraryManagementSystem.dtos.PublisherResponseDTO;
 import com.example.libraryManagementSystem.services.interfaces.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -47,11 +48,15 @@ public class PublisherController {
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePublisher(@PathVariable Long id) {
-        Optional<PublisherResponseDTO> publisher = publisherService.deletePublisher(id);
-        if (publisher.isPresent()) {
-            return ResponseEntity.ok(publisher.get());
+        try {
+            Optional<PublisherResponseDTO> publisher = publisherService.deletePublisher(id);
+            if (publisher.isPresent()) {
+                return ResponseEntity.ok(publisher.get());
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Publisher Not Found With id " + id);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Publisher Not Found With id " + id);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN', 'STAFF')")

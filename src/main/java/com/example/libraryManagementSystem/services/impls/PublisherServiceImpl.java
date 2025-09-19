@@ -69,8 +69,12 @@ public class PublisherServiceImpl implements PublisherService {
     public Optional<PublisherResponseDTO> deletePublisher(Long id) {
         return publisherRepository.findById(id)
                 .map(publisher -> {
+                    if (!publisher.getBooks().isEmpty()) {
+                        throw new RuntimeException("Cannot delete publisher with ID " + id + " because it has " + publisher.getBooks().size() + " associated books.");
+                    }
+
                     PublisherResponseDTO deletedPublisher = publisherMapper.toResponseDTO(publisher);
-                    publisherRepository.deleteById(id);
+                    publisherRepository.delete(publisher);
                     return deletedPublisher;
                 });
     }

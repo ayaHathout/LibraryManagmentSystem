@@ -2,10 +2,10 @@ package com.example.libraryManagementSystem.dtos;
 
 import com.example.libraryManagementSystem.enums.Language;
 
-import java.util.List;
 import java.util.Set;
 
-public record BookUpdateDTO(
+public record BookResponseDTO(
+        Long id,
         String title,
         String isbn,
         String edition,
@@ -16,6 +16,10 @@ public record BookUpdateDTO(
         Long totalCopies,
         Long availableCopies,
         Long publisherId,
+        String publisherName,
         Set<Long> authorIds,
-        Set<Long> categoryIds
-) {}
+        Set<String> authorNames,
+        Set<Long> categoryIds,
+        Set<String> categoryNames
+) {
+}

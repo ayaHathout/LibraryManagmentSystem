@@ -8,7 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "books")
@@ -58,7 +60,7 @@ public class Book implements Serializable {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
-    private List<Author> authors;
+    private Set<Author> authors = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -66,5 +68,5 @@ public class Book implements Serializable {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 }

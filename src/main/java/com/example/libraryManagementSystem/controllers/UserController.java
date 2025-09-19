@@ -23,12 +23,6 @@ public class UserController {
     public User login(@AuthenticationPrincipal(expression = "username") String username) {
         System.out.println("username = " + username);
         return userService.getByUserName(username).orElseThrow(() -> new RuntimeException("User Not Found"));
-
-     /*   Optional<User> user = userService.getByUserName(username);
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password"); */
     }
 
     @PreAuthorize("hasRole('ADMIN')")

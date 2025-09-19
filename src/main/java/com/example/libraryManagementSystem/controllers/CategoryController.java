@@ -47,11 +47,15 @@ public class CategoryController {
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable Long id) {
-        Optional<CategoryResponseDTO> category = categoryService.deleteCategory(id);
-        if (category.isPresent()) {
-            return ResponseEntity.ok(category.get());
+        try {
+            Optional<CategoryResponseDTO> category = categoryService.deleteCategory(id);
+            if (category.isPresent()) {
+                return ResponseEntity.ok(category.get());
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Category Not Found With id " + id);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Category Not Found With id " + id);
     }
 
     @GetMapping

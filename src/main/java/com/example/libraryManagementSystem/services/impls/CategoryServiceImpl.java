@@ -2,6 +2,7 @@ package com.example.libraryManagementSystem.services.impls;
 
 import com.example.libraryManagementSystem.dtos.CategoryDTO;
 import com.example.libraryManagementSystem.dtos.CategoryResponseDTO;
+import com.example.libraryManagementSystem.dtos.PublisherResponseDTO;
 import com.example.libraryManagementSystem.entities.Book;
 import com.example.libraryManagementSystem.entities.Category;
 import com.example.libraryManagementSystem.mappers.CategoryMapper;
@@ -68,11 +69,22 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Optional<CategoryResponseDTO> deleteCategory(Long id) {
+//        return categoryRepository.findById(id)
+//                .map(category -> {
+//                    CategoryResponseDTO dto = categoryMapper.toResponseDTO(category);
+//                    categoryRepository.delete(category);
+//                    return dto;
+//                });
+
         return categoryRepository.findById(id)
                 .map(category -> {
-                    CategoryResponseDTO dto = categoryMapper.toResponseDTO(category);
+                    if (!category.getSubCategories().isEmpty()) {
+                        throw new RuntimeException("Cannot delete category with ID " + id + " because it has " + category.getSubCategories().size() + " associated sub categories.");
+                    }
+
+                    CategoryResponseDTO deletedCategory = categoryMapper.toResponseDTO(category);
                     categoryRepository.delete(category);
-                    return dto;
+                    return deletedCategory;
                 });
     }
 }

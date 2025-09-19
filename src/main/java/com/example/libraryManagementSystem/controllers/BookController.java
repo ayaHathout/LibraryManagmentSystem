@@ -1,6 +1,7 @@
 package com.example.libraryManagementSystem.controllers;
 
 import com.example.libraryManagementSystem.dtos.BookCreateDTO;
+import com.example.libraryManagementSystem.dtos.BookResponseDTO;
 import com.example.libraryManagementSystem.dtos.BookUpdateDTO;
 import com.example.libraryManagementSystem.entities.Book;
 import com.example.libraryManagementSystem.services.interfaces.BookService;
@@ -22,15 +23,20 @@ public class BookController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public Book createBook(@RequestBody BookCreateDTO bookCreateDTO) {
-        return bookService.createBook(bookCreateDTO);
+    public ResponseEntity<?> createBook(@RequestBody BookCreateDTO bookCreateDTO) {
+        try {
+            BookResponseDTO retBook = bookService.createBook(bookCreateDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(retBook);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
+        }
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/{id}")
     public ResponseEntity<?> updateBook(@PathVariable Long id, @RequestBody BookUpdateDTO bookUpdateDTO) {
         try {
-            Optional<Book> book = bookService.updateBook(id, bookUpdateDTO);
+            Optional<BookResponseDTO> book = bookService.updateBook(id, bookUpdateDTO);
             if (book.isPresent()) {
                 return ResponseEntity.ok(book.get());
             }
@@ -38,13 +44,12 @@ public class BookController {
         } catch (RuntimeException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
         }
-
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBook(@PathVariable Long id) {
-        Optional<Book> book = bookService.deleteBook(id);
+        Optional<BookResponseDTO> book = bookService.deleteBook(id);
         if (book.isPresent()) {
             return ResponseEntity.ok(book.get());
         }
@@ -52,13 +57,13 @@ public class BookController {
     }
 
     @GetMapping
-    public List<Book> getAllBooks() {
+    public List<BookResponseDTO> getAllBooks() {
         return bookService.getAllBooks();
     }
 
     @GetMapping("{id}")
     public ResponseEntity<?> getBook(@PathVariable Long id) {
-        Optional<Book> book = bookService.getBookById(id);
+        Optional<BookResponseDTO> book = bookService.getBookById(id);
         if (book.isPresent()) {
             return ResponseEntity.ok(book.get());
         }
