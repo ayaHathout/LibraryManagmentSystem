@@ -95,6 +95,7 @@ public class UserActivityLogAspect {
         else if (methodName.startsWith("return"))  return Action.RETURN;
         else if (methodName.startsWith("login"))  return Action.LOGIN;
         else if (methodName.startsWith("get"))  return Action.GET;
+        else if (methodName.startsWith("search"))  return Action.SEARCH;
         return null;
     }
 

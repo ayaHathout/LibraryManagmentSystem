@@ -4,7 +4,6 @@ import com.example.libraryManagementSystem.dtos.PublisherDTO;
 import com.example.libraryManagementSystem.dtos.PublisherResponseDTO;
 import com.example.libraryManagementSystem.services.interfaces.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

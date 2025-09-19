@@ -2,7 +2,6 @@ package com.example.libraryManagementSystem.controllers;
 
 import com.example.libraryManagementSystem.dtos.UserDTO;
 import com.example.libraryManagementSystem.dtos.UserResponseDTO;
-import com.example.libraryManagementSystem.entities.User;
 import com.example.libraryManagementSystem.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

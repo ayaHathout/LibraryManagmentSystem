@@ -3,7 +3,6 @@ package com.example.libraryManagementSystem.controllers;
 import com.example.libraryManagementSystem.dtos.BookCreateDTO;
 import com.example.libraryManagementSystem.dtos.BookResponseDTO;
 import com.example.libraryManagementSystem.dtos.BookUpdateDTO;
-import com.example.libraryManagementSystem.entities.Book;
 import com.example.libraryManagementSystem.services.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
