@@ -1,0 +1,1406 @@
+type: collection.insomnia.rest/5.0
+name: LibraryManagementSystem
+meta:
+  id: wrk_81fdd95e4ced4369a694a61f41c28505
+  created: 1758043109629
+  modified: 1758043109629
+  description: ""
+collection:
+  - name: User
+    meta:
+      id: fld_5fb8127baa2b42f8b09afc5a5802b020
+      created: 1758043167142
+      modified: 1758198999497
+      sortKey: -1758043167142
+      description: ""
+    children:
+      - url: http://localhost:8086/users/8
+        name: update
+        meta:
+          id: req_339f15db8a814427882787fe0c4dd504
+          created: 1758047147056
+          modified: 1758226545899
+          isPrivate: false
+          description: ""
+          sortKey: -1758043173901
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"lastName": "noor"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/users/login
+        name: login
+        meta:
+          id: req_01d01052f78b4c98b1203aa1cb3c56dd
+          created: 1758047312861
+          modified: 1758290670315
+          isPrivate: false
+          description: ""
+          sortKey: -1753818006945
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/users/15
+        name: delete
+        meta:
+          id: req_45c98f111d984048abed38014001d2b1
+          created: 1758051620313
+          modified: 1758287741482
+          isPrivate: false
+          description: ""
+          sortKey: -1758051620313
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/users
+        name: create
+        meta:
+          id: req_154a2ed49dfe4df1af600d9acca0e0d0
+          created: 1758056857720
+          modified: 1758287553419
+          isPrivate: false
+          description: ""
+          sortKey: -1758056857720
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "userName": "mm",
+                "email": "mm@library.com",
+                "password": "mm123",
+                "phone": "02443656484",
+                "firstName": "{% faker 'randomMACAddress' %}",
+                "lastName": "mm",
+                "role": "STAFF"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/users
+        name: getAll
+        meta:
+          id: req_448cdbef03054c85916dc586b382d12d
+          created: 1758056889936
+          modified: 1758290564926
+          isPrivate: false
+          description: ""
+          sortKey: -1758056889936
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: alaa_adel
+          password: alaa123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/users/1
+        name: getById
+        meta:
+          id: req_4b2e9f3d24274b2d8d72f9d60bca4ab2
+          created: 1758057668790
+          modified: 1758290616741
+          isPrivate: false
+          description: ""
+          sortKey: -1758057668790
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: alaa_adel
+          password: alaa123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Book
+    meta:
+      id: fld_ae39f97f998e40608982dde76defa23f
+      created: 1758110685630
+      modified: 1758110685630
+      sortKey: -1758110685630
+      description: ""
+    children:
+      - url: http://localhost:8086/books/7
+        name: getById
+        meta:
+          id: req_3f60ab3ee1e54505b5d18261f22ae732
+          created: 1758110727954
+          modified: 1758283181283
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693917
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/books
+        name: getAll
+        meta:
+          id: req_830325cba08a4cc6b799f1a8b70ecf2a
+          created: 1758110762535
+          modified: 1758119164776
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693867
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/books
+        name: create
+        meta:
+          id: req_b3ed7e300a304f449db45bf4e2115c05
+          created: 1758110771100
+          modified: 1758285472217
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693842
+        method: POST
+        body:
+          mimeType: application/json
+          text: >
+            {
+              "title": "My last book",
+              "isbn": "{% hash 'sha256', 'hex', '' %}803054884",
+              "edition": "1st",
+              "publicationYear": 2020,
+              "summary": "A Handbook of Agile Software Craftsmanship by Robert C. Martin.",
+              "coverImage": "https://example.com/images/clean-code.jpg",
+              "totalCopies": 2,
+              "publisherId": 6,
+              "authorIds": [3],
+              "categoryIds": [1]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/books/7
+        name: delete
+        meta:
+          id: req_04ebafce89844515be81500c2cf8dace
+          created: 1758110787589
+          modified: 1758283487412
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693829.5
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/books/5
+        name: update
+        meta:
+          id: req_f02c654629024e5abbdace027f2a6138
+          created: 1758110839111
+          modified: 1758283311272
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693729.5
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"publisherId": 6
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Borrower
+    meta:
+      id: fld_f914c10d4e984bc997bc94b05d6adc18
+      created: 1758126364919
+      modified: 1758126364919
+      sortKey: -1758076926386
+      description: ""
+    children:
+      - url: http://localhost:8086/borrowers/3
+        name: getById
+        meta:
+          id: req_a415ec1b4af84ac0bb2c24e22c16fbfc
+          created: 1758126364977
+          modified: 1758231953798
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693917
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/borrowers
+        name: getAll
+        meta:
+          id: req_377635eb12bf438f9d32ae3e24a52b3e
+          created: 1758126365000
+          modified: 1758230517006
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693867
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: alaa_adel
+          password: alaa123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/borrowers
+        name: create
+        meta:
+          id: req_df05fb6ede9b4307b88a07edb9e82961
+          created: 1758126365036
+          modified: 1758291377223
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693842
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "firstName": "Nnmnmnour",
+              "lastName": "Mohamed",
+            	"email": "nour.mo@example.com",
+              "phone": "01012440678",
+              "address": "Cairo, Egypt"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: aya_adel
+          password: aya123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/borrowers/5
+        name: delete
+        meta:
+          id: req_490a8080465248a688ba4a76519a6915
+          created: 1758126365043
+          modified: 1758292292521
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693829.5
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/borrowers/2
+        name: update
+        meta:
+          id: req_259cfc3af4064cbbaf815e2dbdedb87e
+          created: 1758126365046
+          modified: 1758227342158
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693729.5
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "wael@example.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: BorrowerRecord
+    meta:
+      id: fld_16bf48e82a054a47b321561ad25aa345
+      created: 1758130686526
+      modified: 1758227265497
+      sortKey: -1758060046764
+      description: ""
+    children:
+      - url: http://localhost:8086/borrower-records/3
+        name: getById
+        meta:
+          id: req_7c76d5a4718046798015714d691327a5
+          created: 1758130686577
+          modified: 1758130869232
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693917
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/borrower-records
+        name: getAll
+        meta:
+          id: req_98fe3895cc0b4551a65df03622625254
+          created: 1758130686656
+          modified: 1758130874509
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693867
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: alaa_adel
+          password: alaa123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/borrower-records
+        name: create
+        meta:
+          id: req_6b60c6dc157d413b92c21b2c41a41b20
+          created: 1758130686715
+          modified: 1758142519902
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693842
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "borrowDate": "2025-08-20",
+              "dueDate": "2025-08-27",
+              "returnDate": null,
+              "borrowerId": 2,
+              "bookId": 2
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: aya_adel
+          password: aya123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/borrower-records/2
+        name: delete
+        meta:
+          id: req_e143e487d771408f9b201786b2bb14e7
+          created: 1758130686775
+          modified: 1758134811197
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693829.5
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: aya_adel
+          password: aya123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/borrower-records/1
+        name: update
+        meta:
+          id: req_1931ca2b160a4df89c05a7cbbbd99267
+          created: 1758130686777
+          modified: 1758147935395
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693729.5
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"dueDate": "2025-09-18"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/borrower-records/return/2
+        name: returnBook
+        meta:
+          id: req_122c85c827224cb387a1e3586e52e8b7
+          created: 1758146084537
+          modified: 1758227283701
+          isPrivate: false
+          description: ""
+          sortKey: -1758146084537
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/borrower-records/borrow
+        name: borrowBook
+        meta:
+          id: req_608f721ae30f4e6996d612e5fd799eb8
+          created: 1758262736710
+          modified: 1758292221094
+          isPrivate: false
+          description: ""
+          sortKey: -1758128389227
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"borrowerId": 5,
+            	"bookId": 11
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Publisher
+    meta:
+      id: fld_b4b40b6e458941f99383429ad21960e2
+      created: 1758189559024
+      modified: 1758189559024
+      sortKey: -1758068486575
+      description: ""
+    children:
+      - url: http://localhost:8086/publishers/4
+        name: getById
+        meta:
+          id: req_9ec61642606047709128464d6c3c30e4
+          created: 1758189559076
+          modified: 1758287624746
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693917
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: mm
+          password: mm123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/publishers
+        name: getAll
+        meta:
+          id: req_3fd62beeb82a41229c2a01aa1b76754f
+          created: 1758189559132
+          modified: 1758189603900
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693867
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: alaa_adel
+          password: alaa123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/publishers
+        name: create
+        meta:
+          id: req_ad59df64d7aa4763b299ffb3312f969a
+          created: 1758189559147
+          modified: 1758231014596
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693842
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "name": "Sprxinngbearmn ddNature mxxmnmnxxxx",
+                "phone": "015532253272100",
+                "email": "sfdunbnpnpo2165rt124455@springernature.com",
+                "address": "The Campus, 4 Crinan Street, London N1 9XW, UK"
+              }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: zad_adel
+          password: zad123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/publishers/1
+        name: delete
+        meta:
+          id: req_9a517eea1e5f4b71bc3bb4423609988f
+          created: 1758189559184
+          modified: 1758287689240
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693829.5
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: "{% faker 'randomMACAddress' %}mm"
+          password: mm123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/publishers/4
+        name: update
+        meta:
+          id: req_ade003c34d3548af9bee906601caa0cc
+          created: 1758189559185
+          modified: 1758190137165
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693729.5
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"phone": "14036982000"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Author
+    meta:
+      id: fld_de4a6e7642c648d19a6a1dd9b36644ff
+      created: 1758268424800
+      modified: 1758272551987
+      sortKey: -1758064266669.5
+      description: ""
+    children:
+      - url: http://localhost:8086/authors/6
+        name: getById
+        meta:
+          id: req_a61cf471ce0d45d28e995fd255fbeaa9
+          created: 1758268424831
+          modified: 1758268817221
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693917
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/authors
+        name: getAll
+        meta:
+          id: req_986efaf487e94ef5a0d09e22e96ecd97
+          created: 1758268424881
+          modified: 1758268442301
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693867
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: alaa_adel
+          password: alaa123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/authors
+        name: create
+        meta:
+          id: req_8193d566549f44b5b82e28c2f0ffe1f3
+          created: 1758268424883
+          modified: 1758268742974
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693842
+        method: POST
+        body:
+          mimeType: application/json
+          text: >
+            {
+              "firstName": "Naguib",
+              "lastName": "Mahfouz",
+              "bio": "Egyptian writer who won the 1988 Nobel Prize in Literature, known for the Cairo Trilogy."
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/authors/2
+        name: delete
+        meta:
+          id: req_bf6fe275796b449dbede2568cacb9209
+          created: 1758268424885
+          modified: 1758268913464
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693829.5
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/authors/2
+        name: update
+        meta:
+          id: req_0453fd9a4f084dc0a245f910746769d2
+          created: 1758268424887
+          modified: 1758268862500
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693729.5
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"firstName": "Ahmed"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Category
+    meta:
+      id: fld_6dbbdebbf44f4b968cc9db886ec6160f
+      created: 1758272580606
+      modified: 1758272580606
+      sortKey: -1758062156716.75
+      description: ""
+    children:
+      - url: http://localhost:8086/categories/3
+        name: getById
+        meta:
+          id: req_2c4678c721204f7fb41b234d17de77db
+          created: 1758272580609
+          modified: 1758275767684
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693917
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/categories
+        name: getAll
+        meta:
+          id: req_efc886f8678143a789bbada3b59b0d85
+          created: 1758272580612
+          modified: 1758287608288
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693867
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: mm
+          password: mm123
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/categories
+        name: create
+        meta:
+          id: req_a8ac9e48f9ae4896ae549effbd3413d0
+          created: 1758272580614
+          modified: 1758273379775
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693842
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "name": "Biology",
+              "parentId": null
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/categories/5
+        name: delete
+        meta:
+          id: req_b889cce0d11c455dab4153070d7a2462
+          created: 1758272580616
+          modified: 1758285893871
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693829.5
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/categories/4
+        name: update
+        meta:
+          id: req_8e08bdc2af7847829e4f61def97c7174
+          created: 1758272580617
+          modified: 1758276234753
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693729.5
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"parentId": 5
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: UserActivityLog
+    meta:
+      id: fld_66f401f7ae4a40c7b551a28385625c74
+      created: 1758303956001
+      modified: 1758303956001
+      sortKey: -1758093806008
+      description: ""
+    children:
+      - url: http://localhost:8086/user-activity-logs?user-id=7
+        name: getByUserId
+        meta:
+          id: req_cbcbac1b84324d8b97d4b3dd6e6ba3cb
+          created: 1758303956042
+          modified: 1758304568801
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693917
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/user-activity-logs
+        name: getAll
+        meta:
+          id: req_1553e5376a4f4ed8bc5dd0cfa1a9b1fd
+          created: 1758303956069
+          modified: 1758303973203
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693867
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/user-activity-logs?action=login
+        name: getByAction
+        meta:
+          id: req_55d68ec635e54675b020d1f55814dba1
+          created: 1758304075531
+          modified: 1758306341200
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693892
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/user-activity-logs?entity-type=USERS
+        name: getByEntityType
+        meta:
+          id: req_21a5d47f00c940458d00254c9f1e7f15
+          created: 1758304155623
+          modified: 1758306618795
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693879.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8086/user-activity-logs/search?user-id=1&entity-type=book&action=get
+        name: search
+        meta:
+          id: req_efe39046f04e4f76b9df85b2978f3f03
+          created: 1758307414108
+          modified: 1758309645606
+          isPrivate: false
+          description: ""
+          sortKey: -1758110693854.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        authentication:
+          type: basic
+          useISO88591: false
+          disabled: false
+          username: admin
+          password: admin
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_c56732bbc8a127f6910aa316e81a66a8c22aeddd
+    created: 1758043109643
+    modified: 1758290313093
+  cookies:
+    - key: JSESSIONID
+      value: 864DC11710700B527F98FDFE25DF38A1
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-09-16T17:20:45.945Z
+      lastAccessed: 2025-09-19T13:58:33.092Z
+      id: 5f633446-6ab4-4193-8064-28c1636f13a4
+environments:
+  name: Base Environment
+  meta:
+    id: env_c56732bbc8a127f6910aa316e81a66a8c22aeddd
+    created: 1758043109640
+    modified: 1758043109640
+    isPrivate: false
