@@ -103,12 +103,13 @@ The database schema is designed to support a scalable and flexible library manag
 git clone https://github.com/ayaHathout/LibraryManagmentSystem.git
 ```
 
-2. Create a MySQL database (for example: library_db) and update the database configuration in: src/main/resources/application.properties
-    spring.datasource.url=jdbc:mysql://localhost:3306/library_db
-   
-    spring.datasource.username=YOUR_USERNAME
-   
-    spring.datasource.password=YOUR_PASSWORD
+2. **Create a MySQL database** (e.g., `library_db`) and update the database configuration in `src/main/resources/application.properties`:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/library_db
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
+```
 
 4. Build and run the application using Maven:
     mvn clean install
