@@ -122,4 +122,14 @@ mvn spring-boot:run
 
 5. **Test the REST APIs** using **Postman** or any REST client.
 
+---
+
+## 🛠 API Endpoints
+
+All API endpoints are included in the **Postman collection**.  
+You can import it into Postman to test the application easily:  
+
+[Download Postman Collection](link-to-your-collection.json)
+
+
 
