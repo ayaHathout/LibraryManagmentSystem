@@ -4,6 +4,8 @@ A secure and role-based backend application to efficiently manage library operat
 
 This project showcases key backend development skills such as **REST API design, JPA/Hibernate integration, role-based access control, and database management**. The system ensures secure, organized, and efficient handling of library operations.
 
+---
+
 ## Database Design (ERD)
 
 ![Library Management System ERD](images/libraryERD.PNG)
