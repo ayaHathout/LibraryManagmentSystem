@@ -120,6 +120,6 @@ mvn spring-boot:run
 
 4. **Access the application** at: [http://localhost:8086](http://localhost:8086)
 
-7. You can test the REST APIs using Postman or any REST client.
+5. **Test the REST APIs** using **Postman** or any REST client.
 
 
