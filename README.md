@@ -30,8 +30,6 @@ Designed to showcase practical skills in **Java backend development and database
 
 The database schema is designed to support a scalable and flexible library management system, handling books, users, and borrowing transactions efficiently while ensuring data consistency and security.
 
----
-
 ### Core Entities
 
 - **Books**
@@ -65,8 +63,6 @@ The database schema is designed to support a scalable and flexible library manag
 - **UserActivityLogs**:  
   - Logs system activities such as create, update, delete, login, borrow, and return
   - Ensures auditing and accountability
-
----
 
 ### 📌 Why This Design?
 
