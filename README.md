@@ -80,11 +80,14 @@ The database schema is designed to support a scalable and flexible library manag
 
 - **Language:** Java  
 - **Framework:** Spring Boot  
+- **Web Layer:** Spring MVC  
+- **Security:** Spring Security (Authentication & Role-Based Authorization)  
+- **Data Access:** Spring Data JPA  
+- **ORM:** Hibernate  
 - **Database:** MySQL  
-- **ORM:** JPA / Hibernate  
 - **Build Tool:** Maven  
 - **Architecture:** Layered Architecture (Controller, Service, Repository)  
-- **Security:** Role-Based Access Control, Authentication  
 - **API Style:** RESTful APIs  
+ 
 
 
