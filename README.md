@@ -129,7 +129,7 @@ mvn spring-boot:run
 All API endpoints are included in the **Postman collection**.  
 You can import it into Postman to test the application easily:  
 
-[Download Postman Collection](link-to-your-collection.json)
+[Download Postman Collection](postman/JSON)
 
 
 
