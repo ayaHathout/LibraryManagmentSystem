@@ -4,6 +4,8 @@ A **secure and role-based backend application** to efficiently manage library op
 
 This project demonstrates key backend development skills such as **RESTful API design, JPA/Hibernate integration, role-based access control, and secure user authentication**.
 
+Designed to showcase practical skills in **Java backend development and database management**, following clean architecture and best practices.
+
 ---
 
 ## Database Design (ERD)
