@@ -30,7 +30,7 @@ Designed to showcase practical skills in **Java backend development and database
 
 The database schema is designed to support a scalable and flexible library management system, handling books, users, and borrowing transactions efficiently while ensuring data consistency and security.
 
-### Core Entities
+### 🗄️ Core Entities
 
 - **Books**
   - Stores extended metadata: title, ISBN, edition, publication year, summary, language, cover image
@@ -91,12 +91,12 @@ The database schema is designed to support a scalable and flexible library manag
 
 ## 🚀 Installation & Running Instructions
 
-### Requirements
+### 📋 Requirements
 - Java 21
 - MySQL
 - Maven
 
-### Running the Application
+### ▶️ Running the Application
 
 1. **Clone the repository**:
 ```bash
