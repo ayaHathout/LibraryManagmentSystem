@@ -110,6 +110,9 @@ spring.datasource.url=jdbc:mysql://localhost:3306/library_db
 spring.datasource.username=YOUR_USERNAME
 spring.datasource.password=YOUR_PASSWORD
 ```
+  You can initialize the database using the provided SQL scripts in the sql folder in this repository:
+  - sql/schema.sql → creates the database schema
+  - sql/sample_data.sql → inserts sample data
 
 3. **Build and run the application** using Maven:
 
@@ -117,9 +120,6 @@ spring.datasource.password=YOUR_PASSWORD
 mvn clean install
 mvn spring-boot:run
 ```
-  You can initialize the database using the provided SQL scripts in the sql folder in this repository:
-  - sql/schema.sql → creates the database schema
-  - sql/sample_data.sql → inserts sample data
 
 4. **Access the application** at: [http://localhost:8086](http://localhost:8086)
 
