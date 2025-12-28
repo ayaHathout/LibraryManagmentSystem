@@ -67,12 +67,24 @@ The database schema is designed to support a scalable and flexible library manag
 ---
 
 ### 📌 Why This Design?
+
 - Normalized schema ensures data consistency and avoids duplication  
 - Flexible Many-to-Many relationships support multiple authors and categories per book  
 - Role-based access control enhances system security  
 - `BorrowRecords` decouples borrowing logic from books and users  
 - Activity logging provides transparency and auditability
 
+---
 
+## 🧱 Tech Stack
+
+- **Language:** Java  
+- **Framework:** Spring Boot  
+- **Database:** MySQL  
+- **ORM:** JPA / Hibernate  
+- **Build Tool:** Maven  
+- **Architecture:** Layered Architecture (Controller, Service, Repository)  
+- **Security:** Role-Based Access Control, Authentication  
+- **API Style:** RESTful APIs  
 
 
