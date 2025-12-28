@@ -22,45 +22,54 @@ Designed to showcase practical skills in **Java backend development and database
 
 ---
 
-## Database Design (ERD)
+## 🗄 Database Design (ERD)
 
 ![Library Management System ERD](images/libraryERD.PNG)
 
-The Library Management System database is designed to efficiently manage books, borrowers, users, and borrowing transactions. Below is a summary of the Entity Relationship Diagram (ERD):  
+The database schema is designed to support a scalable and flexible library management system, handling books, users, and borrowing transactions efficiently while ensuring data consistency and security.
 
-- **Books**:  
-  Stores detailed metadata including title, ISBN, edition, publication year, summary, language, cover image, total copies, and available copies.  
-  Each book is linked to:  
-  - **Authors** (Many-to-Many): a book can have multiple authors, and an author can write multiple books.  
-  - **Categories** (Many-to-Many): a book can belong to multiple categories/genres, and a category can contain multiple books.  
-  - **Publisher** (One-to-Many): a book has one publisher, but a publisher can publish many books.  
+### Core Entities
+
+- **Books**
+  - Stores extended metadata: title, ISBN, edition, publication year, summary, language, cover image
+  - Tracks total and available copies
+  - Relationships:
+    - Many-to-Many with **Authors**
+    - Many-to-Many with **Categories**
+    - Many-to-One with **Publisher**
 
 - **Authors**:  
-  Stores information about book authors, including their names and short biography.  
+  - Stores author details such as name and biography
 
 - **Categories**:  
-  Used to classify books. Supports parent-child relationships for hierarchical categorization (e.g., Fiction → Mystery).  
+  - Supports hierarchical structure (parent-child) for genre classification  
+  - Example: Fiction → Mystery
 
 - **Borrowers**:  
-  Represents library members who borrow books. Each borrower has personal details (name, email, phone, address).  
+  - Represents library members
+  - Stores personal information (name, email, phone, address)
 
 - **BorrowRecords**:  
-  Tracks borrowing transactions. Each record links a **borrower** to a **book** with borrow date, due date, return date, status (e.g., borrowed, returned, overdue), and any applicable fines.  
+  - Tracks borrowing transactions
+  - Includes borrow date, due date, return date, status, and fines
+  - Links borrowers with books  
 
 - **Users**:  
-  Represents system users (e.g., Administrator, Librarian, Staff). Includes role-based access control with roles stored as an ENUM.  
+  - Represents system users (Administrator, Librarian, Staff)
+  - Implements role-based access control using ENUM roles 
 
 - **UserActivityLogs**:  
-  Tracks system user activities such as **create, update, delete, get, login, borrow, and return**, ensuring accountability and auditing.  
+  - Logs system activities such as create, update, delete, login, borrow, and return
+  - Ensures auditing and accountability
 
 ---
 
 📌 **Why this design?**  
-- Normalization ensures data consistency (e.g., no duplicate authors or categories).  
-- Many-to-Many relationships allow flexibility for books with multiple authors or categories.  
-- Role-based access in `Users` ensures security and proper permission control.  
-- `BorrowRecords` decouples book copies from members, making borrowing/returning efficient.  
-- `UserActivityLogs` provides transparency on system usage and borrowing activities. 
+- Normalized schema ensures data consistency and avoids duplication  
+- Flexible Many-to-Many relationships support multiple authors and categories per book  
+- Role-based access control enhances system security  
+- `BorrowRecords` decouples borrowing logic from books and users  
+- Activity logging provides transparency and auditability
 
 
 
