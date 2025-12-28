@@ -131,5 +131,12 @@ You can import it into Postman to test the application easily:
 
 [Download Postman Collection](postman/JSON)
 
+---
 
+## 👩‍💻 About the Author
 
+**Aya Hathout** – ITI Graduate | Enterprise & Web Apps Development (Java)  
+- 🌐 LinkedIn: [https://www.linkedin.com/in/aya-hathout](https://www.linkedin.com/in/aya-hathout)  
+- 🐙 GitHub: [https://github.com/ayaHathout](https://github.com/ayaHathout)
+
+⭐ If you like this project, feel free to **star ⭐ the repo**!
