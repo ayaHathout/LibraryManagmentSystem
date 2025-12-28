@@ -111,10 +111,12 @@ spring.datasource.username=YOUR_USERNAME
 spring.datasource.password=YOUR_PASSWORD
 ```
 
-4. Build and run the application using Maven:
-    mvn clean install
-   
-    mvn spring-boot:run
+3. **Build and run the application** using Maven:
+
+```bash
+mvn clean install
+mvn spring-boot:run
+```
 
 6. The application will start on: http://localhost:8086
 
