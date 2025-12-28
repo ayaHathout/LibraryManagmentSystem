@@ -111,7 +111,7 @@ spring.datasource.username=YOUR_USERNAME
 spring.datasource.password=YOUR_PASSWORD
 ```
 
-3. **Initialize the database** (optional):
+3. **Initialize the database (optional)**:
   You can use the provided SQL scripts to create the schema and insert sample data:
   - [Download SQL Schema](sql/schema.sql)
   - [Download SQL Scripts](sql/sample_data.sql)
