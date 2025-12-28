@@ -28,6 +28,8 @@ Designed to showcase practical skills in **Java backend development and database
 
 The database schema is designed to support a scalable and flexible library management system, handling books, users, and borrowing transactions efficiently while ensuring data consistency and security.
 
+---
+
 ### Core Entities
 
 - **Books**
@@ -64,7 +66,7 @@ The database schema is designed to support a scalable and flexible library manag
 
 ---
 
-📌 **Why this design?**  
+### 📌 Why This Design?
 - Normalized schema ensures data consistency and avoids duplication  
 - Flexible Many-to-Many relationships support multiple authors and categories per book  
 - Role-based access control enhances system security  
