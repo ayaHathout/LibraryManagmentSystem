@@ -89,7 +89,22 @@ The database schema is designed to support a scalable and flexible library manag
 - **Database:** MySQL  
 - **Build Tool:** Maven  
 - **Architecture:** Layered Architecture (Controller, Service, Repository)  
-- **API Style:** RESTful APIs  
+- **API Style:** RESTful APIs
+
+---
+
+## 🚀 Installation & Running Instructions
+
+### Requirements
+- Java 21
+- MySQL
+- Maven
+
+### Running the Application
+
+1. Clone the repository:
+```bash
+git clone https://github.com/ayaHathout/LibraryManagmentSystem.git
  
 
 
