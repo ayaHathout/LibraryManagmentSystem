@@ -8,6 +8,20 @@ Designed to showcase practical skills in **Java backend development and database
 
 ---
 
+## 🧠 Features
+
+- ✅ **Role-based access control:** Administrator, Librarian, Staff  
+- 📘 **Book management:** CRUD operations with extended metadata (title, authors, publisher, categories, language, ISBN, edition, summary, cover image)  
+- 👩‍💼 **Member management:** Register, login, update profiles  
+- 🏢 **System user management:** Role-based permissions, secure password storage, authentication, activity logging  
+- 📊 **Borrowing & return functionality:** Track book loans, due dates, return status, and fines  
+- 🔁 **Database integration:** JPA/Hibernate ORM for all entities  
+- 🔐 **Validation & error handling:** Input validation, structured API responses, exception handling  
+- 📂 **SQL scripts included:** Sample data and database initialization  
+- 📦 **Clean architecture:** Layered structure (Controller → Service → Repository)
+
+---
+
 ## Database Design (ERD)
 
 ![Library Management System ERD](images/libraryERD.PNG)
