@@ -110,9 +110,10 @@ spring.datasource.url=jdbc:mysql://localhost:3306/library_db
 spring.datasource.username=YOUR_USERNAME
 spring.datasource.password=YOUR_PASSWORD
 ```
-  You can initialize the database using the provided SQL scripts in the sql folder in this repository:
-  - sql/schema.sql → creates the database schema
-  - sql/sample_data.sql → inserts sample data
+  💾 Initialize the database (optional):
+  You can use the provided SQL scripts to create the schema and insert sample data:
+  [Download SQL Schema](sql/schema.sql)
+  [Download SQL Scripts](sql/sample_data.sql)
 
 3. **Build and run the application** using Maven:
 
@@ -132,7 +133,7 @@ mvn spring-boot:run
 All API endpoints are included in the **Postman collection**.  
 You can import it into Postman to test the application easily:  
 
-[Download Postman Collection](postman/JSON)
+[Download Postman Collection](postman/JSON/libraryCollection.json)
 
 ---
 
