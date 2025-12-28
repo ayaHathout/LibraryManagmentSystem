@@ -98,7 +98,7 @@ The database schema is designed to support a scalable and flexible library manag
 
 ### Running the Application
 
-1. Clone the repository:
+1. **Clone the repository**:
 ```bash
 git clone https://github.com/ayaHathout/LibraryManagmentSystem.git
 ```
