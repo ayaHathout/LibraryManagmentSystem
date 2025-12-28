@@ -112,10 +112,11 @@ git clone https://github.com/ayaHathout/LibraryManagmentSystem.git
 
 4. Build and run the application using Maven:
     mvn clean install
+   
     mvn spring-boot:run
 
-5. The application will start on: http://localhost:8086
+6. The application will start on: http://localhost:8086
 
-6. You can test the REST APIs using Postman or any REST client.
+7. You can test the REST APIs using Postman or any REST client.
 
 
