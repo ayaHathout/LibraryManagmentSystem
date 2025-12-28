@@ -1,6 +1,8 @@
 # Library Management System 📚 (Spring Boot Backend)
 
-A **secure and role-based backend application** to efficiently manage library operations, including books, members, and staff, built with **Spring Boot & MySQL**.  
+A **secure and role-based backend application** to efficiently manage library operations, including books, members, and staff, built with **Spring Boot & MySQL**. 
+
+The system is developed using **Spring MVC**, **Spring Data JPA**, and **Spring Security**, providing a clean layered architecture, secure authentication, and robust data persistence.
 
 This project demonstrates key backend development skills such as **RESTful API design, JPA/Hibernate integration, role-based access control, and secure user authentication**.
 
