@@ -105,15 +105,17 @@ git clone https://github.com/ayaHathout/LibraryManagmentSystem.git
 
 2. Create a MySQL database (for example: library_db) and update the database configuration in: src/main/resources/application.properties
     spring.datasource.url=jdbc:mysql://localhost:3306/library_db
+   
     spring.datasource.username=YOUR_USERNAME
+   
     spring.datasource.password=YOUR_PASSWORD
 
-3. Build and run the application using Maven:
+4. Build and run the application using Maven:
     mvn clean install
     mvn spring-boot:run
 
-4. The application will start on: http://localhost:8086
+5. The application will start on: http://localhost:8086
 
-5. You can test the REST APIs using Postman or any REST client.
+6. You can test the REST APIs using Postman or any REST client.
 
 
