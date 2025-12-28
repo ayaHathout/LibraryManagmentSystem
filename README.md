@@ -118,7 +118,7 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-6. The application will start on: http://localhost:8086
+4. **Access the application** at: [http://localhost:8086](http://localhost:8086)
 
 7. You can test the REST APIs using Postman or any REST client.
 
