@@ -139,6 +139,13 @@ You can import it into Postman to test the application easily:
 
 ---
 
+## 📘 API Documentation (Swagger)
+
+After running the application, access Swagger UI at:
+http://localhost:8086/swagger-ui/index.html
+
+---
+
 ## 👩‍💻 About the Author
 
 **Aya Hathout** – Java Software Engineer | ITI 9-Month Graduate | Enterprise & Web Apps Development (Java)  
