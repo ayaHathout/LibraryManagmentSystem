@@ -141,8 +141,11 @@ You can import it into Postman to test the application easily:
 
 ## 📘 API Documentation (Swagger)
 
-After running the application, access Swagger UI at:
-http://localhost:8086/swagger-ui/index.html
+After running the application, you can explore and test all REST APIs using **Swagger UI**:
+
+👉 http://localhost:8086/swagger-ui/index.html
+
+Swagger provides an interactive interface to view, test, and understand the available endpoints.
 
 ---
 
