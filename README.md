@@ -87,6 +87,7 @@ The database schema is designed to support a scalable and flexible library manag
 - **Build Tool:** Maven  
 - **Architecture:** Layered Architecture (Controller, Service, Repository)  
 - **API Style:** RESTful APIs
+- **API Documentation:** Swagger (OpenAPI 3)
 
 ---
 
