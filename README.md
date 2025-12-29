@@ -21,6 +21,7 @@ Designed to showcase practical skills in **Java backend development and database
 - 🔐 **Validation & error handling:** Input validation, structured API responses, exception handling  
 - 📂 **SQL scripts included:** Sample data and database initialization  
 - 📦 **Clean architecture:** Layered structure (Controller → Service → Repository)
+- 📘 **API documentation:** Interactive Swagger UI for exploring and testing endpoints
 
 ---
 
